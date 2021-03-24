@@ -1,0 +1,74 @@
+.company {
+
+  width: 95%;
+  margin: 20px 0;
+
+  &_title {
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &_icon {
+    margin: 0 10px;
+    cursor: pointer;
+  }
+
+  &_symbol {
+    font-size: 3.4rem;
+    margin-right: 1.25rem;
+    height: 3.4rem;
+  }
+
+  &_name {
+    font-size: 1.25rem;
+    line-height: 1.125rem;
+  }
+
+  &_price {
+    &-common {
+      &-little {
+        font-size: 0.6rem;
+      }
+      &-big2 {
+        font-size: 2rem;
+      }
+      display: flex;
+    }
+
+    &-date {
+      margin-right: 1.5rem;
+    }
+
+    &-close {
+      margin-right: 1.5rem;
+    }
+
+    &-change {
+      margin-right: 1.5rem;
+    }
+
+    &-percent {
+      margin-right: 1.5rem;
+    }
+  }
+
+  &_stat {
+    display: flex;
+    margin: 10px 0;
+    &-table{
+      font-size: 0.8125rem;
+      flex: 1;
+    }
+
+    &-left {
+      text-align: left;
+    }
+
+    &-right {
+      text-align: right;
+    }
+
+  }
+
+}

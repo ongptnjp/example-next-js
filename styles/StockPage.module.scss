@@ -1,0 +1,217 @@
+@import "./variable.module.scss";
+
+.homePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .dropdown {
+    h1 {
+      margin: 0 0 0.25em;
+    }
+    /* Reset Select */
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -ms-appearance: none;
+      appearance: none;
+      outline: 0;
+      box-shadow: none;
+      border: 0 !important;
+      background: #2c3e50;
+      background-image: none;
+    }
+    /* Remove IE arrow */
+    select::-ms-expand {
+      display: none;
+    }
+    /* Custom Select */
+    .select {
+      position: relative;
+      display: flex;
+      width: 20em;
+      height: 3em;
+      line-height: 3;
+      background: #2c3e50;
+      overflow: hidden;
+      border-radius: .25em;
+    }
+    select {
+      flex: 1;
+      padding: 0 .5em;
+      color: #fff;
+      cursor: pointer;
+    }
+    /* Arrow */
+    .select::after {
+      content: '\25BC';
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 0 1em;
+      background: #34495e;
+      cursor: pointer;
+      pointer-events: none;
+      -webkit-transition: .25s all ease;
+      -o-transition: .25s all ease;
+      transition: .25s all ease;
+    }
+    /* Transition */
+    .select:hover::after {
+      color: #f39c12;
+    }
+  }
+}
+
+.history {
+  &-input {
+    width: 40vh;
+    padding: 5px;
+    margin: 10px 0;
+  }
+}
+
+.fav {
+
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  margin-right: 3%;
+
+  li:hover {
+    background: #000;
+    color: white;
+    cursor: pointer;
+  }
+
+  p {
+    text-decoration: none;
+  }
+  
+  ul {
+    background: #fff;
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+  }
+
+  li {
+    color: #000;
+    background: #fff;
+    display: block;
+    float: left;
+    padding: 0.4rem;
+    position: relative;
+    text-decoration: none;
+    transition-duration: 0.5s;
+  }
+
+  ul li ul {
+    visibility: hidden;
+    opacity: 0;
+    min-width: 5rem;
+    position: absolute;
+    transition: all 0.5s ease;
+    margin-top: 0.4rem;
+    left: 0;
+    display: none;
+  }
+
+  ul li:hover > ul,
+  ul li ul:hover {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
+
+  ul li ul li {
+    clear: both;
+    width: 100%;
+  }
+}
+
+.news {
+  display: flex;
+  margin: 20px auto 0;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1 0 21%;
+  a {
+    text-decoration: none;
+  }
+  
+  h2 {
+    font-family: $open-sans;
+    font-weight: 300;
+  }
+  float: left;
+  padding: 0 1.7rem;
+  width: 50%;
+  .menu-content {
+    @include cf;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    li {
+      display: inline-block;
+    }
+    a {
+      color: $white;
+    }
+    span {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      font-size: 10px;
+      font-weight: 700;
+      font-family: 'Open Sans';
+      transform: translate(-50%, 0);
+    }
+  }
+  .wrapper {
+    margin: 15px 0;
+    background-color: $white;
+    min-height: 350px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 19px 38px rgba($black, 0.3), 0 15px 12px rgba($black, 0.2);
+    &:hover {
+      .data {
+        transform: translateY(0);
+      }
+    }
+  }
+  .data {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transform: translateY(calc(70px + 1em));
+    transition: transform 0.3s;
+    .content {
+      padding: 1em;
+      position: relative;
+      z-index: 1;
+    }
+  }
+  .author {
+    font-size: 12px;
+  }
+  .title {
+    margin-top: 10px;
+  }
+  .text {
+    height: 70px;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  input[type='checkbox'] {
+    display: none;
+  }
+  input[type='checkbox']:checked + .menu-content {
+    transform: translateY(-60px);
+  }
+}
