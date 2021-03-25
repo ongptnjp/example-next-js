@@ -9,6 +9,10 @@ Developed with module scss design. (*They claim is faster more than older versio
 - Next JS
 - CSS Module
 
+## Demo
+
+Live demo : [NEXT-US-STOCK-SIMPLE](https://nextjs-us-stock.now.sh/)
+
 ## Getting Started
 
 Before runing project please : `npm install`
