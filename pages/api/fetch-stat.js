@@ -83,18 +83,14 @@ export default async function handle(req, res) {
 
       const stat = await fetchKeyStat(symbol);
       const prevPrice = await fetchPrevPrice(symbol);
-      const history = await fetchHistory(symbol);
       const company = await fetchCompany(symbol);
-      const news = await fetchNews(symbol);
 
       return res.json({
         success: true,
         data: {
           stat,
           prevPrice,
-          history,
           company,
-          news
         }
       });
     } catch (err) {

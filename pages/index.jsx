@@ -1,6 +1,6 @@
 import styles from "../styles/StockPage.module.scss";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import Profile from "../src/Profile";
@@ -17,32 +17,84 @@ const StockPage = () => {
 
   const [prevPrice, setPrevPrice] = useState();
   const [historyData, setHistoryData] = useState();
-  const [isFound, setIsFound] = useState(true);
+  const [isFound, setIsFound] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const mappingName = symbol => {
+    const findName = STOCK_LIST.find(data => data.symbol === symbol);
+
+    if (findName) setMessage(findName.name + " is not found !! Please try agian.");
+    return;
+  };
 
   const onClickSearch = async (symbol) => {
     setIsFound(true);
     setStock(symbol);
 
     try {
-      const response = await axios.get("/api/fetchStockData", { params: { symbol } });
+      const response = await axios.get("/api/fetch-stat", { params: { symbol } });
 
       const { success, data } = response.data;
 
-      if (!success) return setIsFound(false);
+      if (!success) {
+        mappingName(symbol);
+        return setIsFound(false);
+      }
 
-      const { company: rawCompany, news: rawNews, stat, prevPrice: rawPrevPrice, history } = data;
+      const { company: rawCompany, stat, prevPrice: rawPrevPrice } = data;
 
       if (rawCompany && rawPrevPrice && stat) {
         setKeyStat(stat);
         setCompany(rawCompany);
         setPrevPrice(rawPrevPrice);
-        setHistoryData(history);
-        setNews(rawNews);
       }
+      return;
     } catch (err) {
-      setIsFound(false);
+      return setIsFound(false);
     }
   };
+
+  const fetchNews = async (symbol) => {
+    try {
+      const response = await axios.get("/api/fetch-news", { params: { symbol } });
+
+      const { success, data } = response.data;
+
+      if (!success) return setIsFound(false);
+
+      const { news: rawNews } = data;
+
+      if (rawNews) {
+        return setNews(rawNews);
+      }
+    } catch (err) {
+      return setIsFound(false);
+    }
+  };
+
+  const fetchHistory = async (symbol) => {
+    try {
+      const response = await axios.get("/api/fetch-history", { params: { symbol } });
+
+      const { success, data } = response.data;
+
+      if (!success) return setIsFound(false);
+
+      const { history } = data;
+
+      if (history) {
+        return setHistoryData(history);
+      }
+    } catch (err) {
+      return setIsFound(false);
+    }
+  };
+
+
+  useEffect(() => {
+    fetchNews(stock);
+    fetchHistory(stock);
+  },[stock]);
 
   return (
     <div className={styles.homePage}>
@@ -59,17 +111,17 @@ const StockPage = () => {
         </select>
       </div>
 
-      {!isFound && <h2>{STOCK_LIST.find((data) => data.symbol === stock).name} is not found !! please try agian.</h2>}
-      {keyStat && company && prevPrice && (
+      {!isFound && message }
+      {isFound && keyStat && company && prevPrice && (
         <Profile
           company={company}
           prevPrice={prevPrice}
           keyStat={keyStat}
         />
       )}
-      {historyData && <Graph historyData={historyData} />}
+      {isFound && historyData && <Graph historyData={historyData} />}
 
-      {news && (
+      {isFound && news && (
         <div className={styles.news}>
           {news.map((data) => (
             <News key={data.image} news={data} />
