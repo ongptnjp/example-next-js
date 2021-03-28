@@ -10,7 +10,7 @@ const Graph = props => {
 
   return (
     <div className={styles.graph}>
-      <ResponsiveContainer aspect={2} minHeight={10} minWidth={10}>
+      <ResponsiveContainer>
         <LineChart data={props.historyData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
           <Line type="monotone" dataKey="close" stroke="#8884d8" />
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
