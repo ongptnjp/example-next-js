@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import NumberFormat from "react-number-format";
 
 const Profile = props => {
-  const { company, prevPrice, keyStat, isFave, setIsFave } = props;
+  const { company, prevPrice, keyStat } = props;
 
   const tableRowSet = (title, numberValue, className = "") => (
     <tr>
@@ -26,7 +26,6 @@ const Profile = props => {
       <h2 className={styles.company_title}>
         <span className={styles.company_symbol}>{company.symbol}</span>
         <span className={styles.company_name}>{company.companyName}</span>
-        {/* <span className={styles["material-icons"]} style={{cursor: "pointer"}} onClick={() => setIsFave(company.symbol)}>{isFave ? "favorite" : "favorite_border"}</span> */}
       </h2>
       <div className={styles["company_price-common-little"]}>
         <p className={styles["company_price-date"]}>{`Data as of ${new Date(prevPrice.date).toDateString()}`}</p>
@@ -93,8 +92,6 @@ Profile.propTypes = {
   company: PropTypes.object,
   prevPrice: PropTypes.object,
   keyStat: PropTypes.object,
-  isFave: PropTypes.bool,
-  setIsFave: PropTypes.func
 };
 
 export default Profile;
