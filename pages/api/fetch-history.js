@@ -1,4 +1,5 @@
 import { fetchHistory } from "./fetch-stat";
+
 export default async function handle(req, res) {
   const { method } = req;
 

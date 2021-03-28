@@ -50,6 +50,7 @@ const StockPage = () => {
       }
       return;
     } catch (err) {
+      mappingName(symbol);
       return setIsFound(false);
     }
   };

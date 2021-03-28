@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 const News = props => {
   const { news } = props;
 
+  if (!news) return null;
+
   const extractDateInformation = timestamp => {
     if (!timestamp) return null;
     const date = new Date(timestamp);
@@ -42,14 +44,18 @@ const News = props => {
 };
 
 News.propTypes = {
-  news: {
-    datetime: PropTypes.string.isRequired,
+  news: PropTypes.shape({
+    datetime: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
     source: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     headline: PropTypes.string.isRequired,
     summary: PropTypes.string.isRequired,
-  }.isRequired
+  })
+};
+
+News.defaultProps = {
+  news: null
 };
 
 export default News;
