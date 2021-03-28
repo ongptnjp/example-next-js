@@ -12,7 +12,7 @@ Developed with module scss design. (*They claim is faster more than older versio
 
 ## Demo
 
-Live demo : [NEXT-US-STOCK-SIMPLE](https://nextjs-us-stock.now.sh/)
+Live demo : [NEXT-US-STOCK-SIMPLE](https://example-next-js-one.vercel.app/)
 
 ## Getting Started
 
