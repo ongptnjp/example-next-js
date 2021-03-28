@@ -1,13 +1,14 @@
-## Stock US sample project
+# Stock US sample project
 
 Example Next JS version 10 to create simple web-app.
 Developed with module scss design. (*They claim is faster more than older version*)
 
-### Related
+## Related
 
 - React JS
 - Next JS
 - CSS Module
+- Jest
 
 ## Demo
 
@@ -28,9 +29,11 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 Default port set to 3000. If you would like to change, Config in `package.json` file.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- This project base on `NextJS` version 10
+- And mock data from icloud data stock USA
+- Example for setup jest with testing component
+- Using `@testing-library/react` with jest for test component render
+  - The main utilities it provides involve querying the DOM for nodes in a way that's similar to how the user finds elements on the page
 
 ## Learn More
 
