@@ -59,7 +59,7 @@ const StockPage = () => {
         </select>
       </div>
 
-      {!isFound && <h2>{stock.toUpperCase()} is not found !! please try agian.</h2>}
+      {!isFound && <h2>{STOCK_LIST.find((data) => data.symbol === stock).name} is not found !! please try agian.</h2>}
       {keyStat && company && prevPrice && (
         <Profile
           company={company}
